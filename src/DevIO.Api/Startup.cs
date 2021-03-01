@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DevIO.Api.Configuration;
+using DevIO.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevIO.Api
 {
@@ -28,9 +30,9 @@ namespace DevIO.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<MyDbContext>(options => 
+            services.AddDbContext<MeuDbContext>(options => 
             {
-                options.UseSqlServer(Configuraion.getConnectionString("DefaultConnection"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddAutoMapper(typeof(Startup));
 
